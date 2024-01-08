@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-import { BASE_URL } from "../config";
+import { BASE_URL } from "../src/config";
 let socket;
 
 const connectSocket = (user_id) => {
