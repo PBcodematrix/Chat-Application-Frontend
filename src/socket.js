@@ -1,9 +1,9 @@
 import io from "socket.io-client";
-
+import { BASE_URL } from "../config";
 let socket;
 
 const connectSocket = (user_id) => {
-  socket = io("https://chat-app-backend-ldoa.onrender.com", {
+  socket = io(`${BASE_URL}`, {
     query: `user_id=${user_id}`,
   });
 };

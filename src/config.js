@@ -4,7 +4,7 @@ import { enUS, frFR, zhCN, viVN, arSD } from '@mui/material/locale';
 // routes
 import { PATH_DASHBOARD } from "./routes/paths";
 
-export const BASE_URL="https://chat-app-backend-ldoa.onrender.com";
+export const BASE_URL="https://vercel.com/piyush-kumars-projects-99821d82/chat-application-backend/2Kgxc1hMXWQneo5PrakaEoqsFb4b";
 
 export const defaultSettings = {
   themeMode: "light",
