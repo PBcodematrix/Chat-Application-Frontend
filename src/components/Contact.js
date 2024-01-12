@@ -79,20 +79,46 @@ const DeleteDialog = ({ open, handleClose }) => {
     </Dialog>
   );
 };
+const AvatarDialog = ({ open, handleClose }) => {
+  return (
+    <Dialog
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>Delete this Chat</DialogTitle>
+      {/* <DialogContent>
+        <DialogContentText id="alert-dialog-slide-description">
+          Are you sure you want to delete this Chat?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>Yes</Button>
+      </DialogActions> */}
+    </Dialog>
+  );
+};
 
 const Contact = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const {current_conversation}=useSelector((state)=>state.conversation.direct_chat);
-  const {name,img}=current_conversation;
+  const {name,img,about}=current_conversation;
   const [openBlock, setopenBlock] = useState(false);
   const [openDelete, setopenDelete] = useState(false);
+  const [openAvatar, setOpenAvatar] = useState(false);
 
   const handleCloseBlock = () => {
     setopenBlock(false);
   };
   const handleCloseDelete = () => {
     setopenDelete(false);
+  };
+  const handleCloseAvatar = () => {
+    setOpenAvatar(false);
   };
   return (
     <Box sx={{ width: 320, height: "100vh" }}>
@@ -136,9 +162,12 @@ const Contact = () => {
         >
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
             <Avatar
-              src={img}
+              src={img} 
               alt={name}
               sx={{ height: 64, width: 64 }}
+              onClick={() => {
+                setOpenAvatar(true);
+              }}
             />
             <Stack spacing={0.5}>
               <Typography variant="article" fontWeight={600}>
@@ -171,7 +200,7 @@ const Contact = () => {
           <Stack spacing={0.5}>
             <Typography variant="article">About</Typography>
             <Typography variant="body2">
-              Imagination is the only limit
+              {about}
             </Typography>
           </Stack>
           <Divider />
@@ -232,7 +261,7 @@ const Contact = () => {
           <Divider />
           <Typography variant="subtitle2">1 group in common</Typography>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
-            <Avatar src={faker.image.avatar()} alt={faker.name.fullName()} />
+            <Avatar  src={faker.image.avatar()} alt={faker.name.fullName()} />
             <Stack spacing={0.5}>
               <Typography variant="subtitle2">Code Help</Typography>
               <Typography variant="caption">Owl,Monkey and you</Typography>
@@ -268,6 +297,10 @@ const Contact = () => {
       {openDelete && (
         <DeleteDialog open={openDelete} handleClose={handleCloseDelete} />
       )}
+      {openAvatar && (
+        <AvatarDialog open={openAvatar} handleClose={handleCloseAvatar} />
+      )}
+
     </Box>
   );
 };

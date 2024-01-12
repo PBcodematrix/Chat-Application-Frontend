@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
+import { UpdateMe } from "./auth";
 
 const initialState = {
   sidebar: {
@@ -125,6 +126,30 @@ export function FetchFriends() {
       .then((response) => {
         console.log(response);
         dispatch(slice.actions.updateFriends({ friends: response.data.data }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+}
+
+export function UpdateProfile(formValues) {
+  return async (dispatch, getState) => {
+    await axios
+      .post("/user/update-me",
+      {
+        ...formValues
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getState().auth.token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        dispatch(UpdateMe(formValues));
+        dispatch(showSnackbar({severity:"success",message:response.data.message}));
       })
       .catch((error) => {
         console.log(error);

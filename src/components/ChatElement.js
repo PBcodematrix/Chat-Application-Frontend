@@ -17,11 +17,13 @@ const ChatElement = ({ id, name, img, msg, time, unread, online }) => {
     const theme=useTheme();
     const dispatch=useDispatch();
   return (
-    <Box
+    <Box 
     onClick={()=>{
       dispatch(SelectConversation({room_id:id}));
+     
     }}
       sx={{
+        "&:hover":{cursor:"pointer"},
         width: "100%",
         borderRadius: 1,
         backgroundColor: theme.palette.mode==="light"?"#fff":theme.palette.background.default,

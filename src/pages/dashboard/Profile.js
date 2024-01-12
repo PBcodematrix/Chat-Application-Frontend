@@ -2,15 +2,15 @@ import React from "react";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { CaretLeft } from "phosphor-react";
 import ProfileForm from "../../sections/settings/ProfileForm";
+import { useSelector } from "react-redux";
 
 
 const Profile = () => {
   
-
   return (
     <>
       <Stack direction="row" sx={{ width: "100%" }}>
-        {/* Left Pane */}
+        {/* Left Panel   */}
         <Box
           sx={{
             overflowY: "scroll",

@@ -7,7 +7,10 @@ const initialState = {
   token: "",
   isLoading: false,
   email:"",
-  error:false
+  error:false,
+  avatar:null,
+  about:"",
+  firstName:"",
 };
 
 const slice = createSlice({
@@ -28,6 +31,12 @@ const slice = createSlice({
     },
     updateRegisterEmail(state,action){
       state.email=action.payload.email;
+    },
+    updateMe(state,action){
+      const {avatar,firstName,about}=action.payload;
+      state.avatar=avatar;
+      state.firstName=firstName;
+      state.about=about;
     }
   },
 });
@@ -57,6 +66,7 @@ export function LoginUser(formValues) {
             token: response.data.token,
           })
         );
+        dispatch(UpdateMe(response.data));
         window.localStorage.setItem("user_id",response.data.user_id);
         dispatch(showSnackbar({severity:"success",message:response.data.message}))
       })
@@ -66,6 +76,13 @@ export function LoginUser(formValues) {
         dispatch(showSnackbar({severity:"error",message:error.response.data.message}))
       });
   };
+}
+export function UpdateMe(data){
+
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.updateMe(data));
+  }
+
 }
 
 export function LogoutUser() {

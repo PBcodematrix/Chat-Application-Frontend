@@ -30,10 +30,11 @@ export const Message = ({menu}) => {
         // data => list of messages
         console.log(data, "List of messages");
         dispatch(FetchCurrentMessages({ messages: data }));
+        
       });
 
       dispatch(SetCurrentConversation(current));
-    }, []);
+    }, [room_id]);
   return (
     <Box  p={3}>
       <Stack spacing={3}>

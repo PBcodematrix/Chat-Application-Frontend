@@ -1,4 +1,3 @@
-import { faker } from "@faker-js/faker";
 import { createSlice } from "@reduxjs/toolkit";
 
 const user_id = window.localStorage.getItem("user_id");
@@ -25,7 +24,7 @@ const slice = createSlice({
           user_id: this_user._id,
           name: `${this_user.firstName} ${this_user.lastName}`,
           online: this_user.status,
-          img: faker.image.avatar(),
+          img: this_user.avatar,
           msg:el.lastMessage,
           time: el.lastMessageTime,
           unread: 0,
@@ -50,8 +49,8 @@ const slice = createSlice({
               user_id: user._id,
               name: `${user.firstName} ${user.lastName}`,
               online: user.status,
-              img: faker.image.avatar(),
-              msg: faker.music.songName(),
+              img: user.avatar,
+              msg: el.lastMessage,
               time: el.lastMessageTime,
               unread: 0,
               pinned: false,
@@ -70,8 +69,8 @@ const slice = createSlice({
         user_id: user._id,
         name: `${user.firstName} ${user.lastName}`,
         online: user.status ,
-        img: faker.image.avatar(),
-        msg: faker.music.songName(),
+        img: user.avatar,
+        msg: this_conversation.lastMessage,
         time: this_conversation.lastMessageTime,
         unread: 0,
         pinned: false,

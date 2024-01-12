@@ -17,7 +17,7 @@ import {
 import useSettings from "../../hooks/useSettings.js";
 import { useNavigate } from "react-router-dom";
 import { LogoutUser } from "../../redux/Slices/auth.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const getPath=(index)=>{
   switch (index) {
@@ -45,6 +45,7 @@ const getMenuPath=(idx)=>{
 
 const SideBar = () => {
   const dispatch=useDispatch();
+  const auth=useSelector((state)=>state.auth);
   const theme = useTheme();
   const { onToggleMode } = useSettings();
   const [selected, setSelected] = useState(0);
@@ -164,7 +165,7 @@ const SideBar = () => {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
-            src={faker.image.avatar()}
+            src={auth?.avatar}
           />
           <Menu
             id="basic-menu"

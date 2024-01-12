@@ -85,7 +85,7 @@ const DashboardLayout = () => {
         socket?.off("change_status");
       };
     }
-  },[isLoggedIn,socket]);
+  },[isLoggedIn,socket,current_conversation]);
 
   useEffect(()=>{
 

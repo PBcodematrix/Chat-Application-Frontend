@@ -119,7 +119,7 @@ const Chats = () => {
               return <ChatElement {...el} />;
             })}
           </Stack>
-          <Stack spacing={2.4}>
+          <Stack spacing={2.4} >
             <Typography variant="subtitle2" sx={{ color: "#676767" }}>
               All Chats
             </Typography>
