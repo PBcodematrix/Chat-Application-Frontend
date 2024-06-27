@@ -1,5 +1,3 @@
-
-
 import { faker } from "@faker-js/faker";
 import { Avatar, Box, IconButton, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
